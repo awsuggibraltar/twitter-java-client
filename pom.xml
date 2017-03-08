@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright 2017 AWS User Group Gibraltar
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.awsuggib</groupId>
+		<artifactId>awsuggib-os-parent</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<groupId>com.awsuggib.thirdparties</groupId>
+	<artifactId>twitter-java-client</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>twitter-java-client</name>
+
+	<description>AWS User Group Gibraltar</description>
+	<url>https://github.com/awsuggibraltar/twitter-java-client</url>
+	<organization>
+		<name>AWS User Group Gibraltar</name>
+		<url>http://www.hackingonwithit.com</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>sbbailey</id>
+			<name>Stephen Bailey</name>
+			<roles>
+				<role>Project Lead</role>
+			</roles>
+		</developer>		
+	</developers>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/awsuggibraltar/twitter-java-client.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/awsuggibraltar/twitter-java-client.git</developerConnection>
+		<url>https://github.com/awsuggibraltar/twitter-java-client</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<properties>
+		<start-class>com.awsuggib.thirdaprties.twitter</start-class>
+		<spring-boot.version>1.5.2.RELEASE</spring-boot.version>
+	</properties>
+
+
+	<build>
+		<finalName>${project.name}-${project.version}</finalName>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<executions>
+					<execution>
+					<goals>
+						<goal>repackage</goal>
+					</goals>		
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>create-distribution</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+						<descriptors>
+							<descriptor>assembly/packaging.xml</descriptor>
+						</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>	
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.21</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.syslog4j</groupId>
+			<artifactId>syslog4j</artifactId>
+			<version>0.9.30</version>
+		</dependency>
+
+	</dependencies>
+
+</project>
